@@ -16,6 +16,7 @@
         "laravel/tinker": "~1.0",
         "mews/captcha": "~2.0",
         "mews/purifier": "~2.0",
+        "overtrue/easy-sms": "^1.1",
         "overtrue/laravel-lang": "~3.0",
         "overtrue/pinyin": "~3.0",
         "predis/predis": "~1.0",
@@ -25,6 +26,8 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "~3.1",
+        "barryvdh/laravel-ide-helper": "^2.5",
+        "doctrine/dbal": "^2.8",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
@@ -61,6 +64,11 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
+            "php artisan optimize"
         ]
     },
     "config": {
