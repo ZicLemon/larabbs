@@ -40,6 +40,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $phone
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhone($value)
  */
 class User extends Authenticatable
 {
