@@ -42,6 +42,10 @@ use Spatie\Permission\Traits\HasRoles;
  * @mixin \Eloquent
  * @property string|null $phone
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhone($value)
+ * @property string|null $weixin_openid
+ * @property string|null $weixin_unionid
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinOpenid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinUnionid($value)
  */
 class User extends Authenticatable
 {
@@ -68,6 +72,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'phone', 'email', 'password', 'introduction', 'avatar',
+        'weixin_openid','weixin_unionid'
     ];
 
     /**
