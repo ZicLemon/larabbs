@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\Models\User
@@ -47,7 +48,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinOpenid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinUnionid($value)
  */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Traits\LastActivedAtHelper;
     use Traits\ActiveUserHelper;
@@ -128,5 +129,15 @@ class User extends Authenticatable
         }
 
         $this->attributes['avatar'] = $path;
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
