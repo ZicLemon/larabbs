@@ -63,26 +63,30 @@ $api->version('v1', [
         'middleware' => 'api.throttle',
         'limit' => config('api.rate_limits.access.limit'),
         'expires' => config('api.rate_limits.access.expires'),
-    ],function($api){
+    ], function ($api) {
         // 游客可以访问的接口
-
-        $api->get('categories','CategoriesController@index')
+        //获取分类列表
+        $api->get('categories', 'CategoriesController@index')
             ->name('api.categories.index');
 
 
         //需要token验证的接口
-        $api->group(['middleware' => 'api.auth'],function($api){
+        $api->group(['middleware' => 'api.auth'], function ($api) {
             //登录获取用户信息
-            $api->get('user','UsersController@me')
+            $api->get('user', 'UsersController@me')
                 ->name('api.user.show');
 
             //编辑登录用户信息
-            $api->patch('user','UsersController@update')
+            $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
 
             // 图片资源
             $api->post('images', 'ImagesController@store')
                 ->name('api.images.store');
+
+            //发布话题
+            $api->post('topics', 'TopicsController@store')
+                ->name('api.topics.store');
 
         });
     });
