@@ -111,6 +111,7 @@ $api->version('v1', [
             $api->post('topics/{topic}/replies', 'RepliesController@store')
                 ->name('api.topics.replies.store');
 
+            
         });
     });
 
