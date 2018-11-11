@@ -74,11 +74,11 @@ $api->version('v1', [
             ->name('api.topics.index');
 
         //获取用户话题列表
-        $api->get('users/{user}/topics','TopicsController@userIndex')
+        $api->get('users/{user}/topics', 'TopicsController@userIndex')
             ->name('api.users.topics.index');
 
         //获取话题详情
-        $api->get('topics/{topic}','TopicsController@show')
+        $api->get('topics/{topic}', 'TopicsController@show')
             ->name('api.topics.show');
 
         //需要token验证的接口
@@ -106,6 +106,10 @@ $api->version('v1', [
             //删除话题
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.destroy');
+
+            // 发布回复
+            $api->post('topics/{topic}/replies', 'RepliesController@store')
+                ->name('api.topics.replies.store');
 
         });
     });
