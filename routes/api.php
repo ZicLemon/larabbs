@@ -81,6 +81,14 @@ $api->version('v1', [
         $api->get('topics/{topic}', 'TopicsController@show')
             ->name('api.topics.show');
 
+        //获取回复列表
+        $api->get('topics/{topic}/replies','RepliesController@index')
+            ->name('api.topics.replies.index');
+
+        //获取某用户回复列表
+        $api->get('users/{user}/replies','RepliesController@userIndex')
+            ->name('api.users.replies.index');
+
         //需要token验证的接口
         $api->group(['middleware' => 'api.auth'], function ($api) {
             //登录获取用户信息
@@ -114,6 +122,7 @@ $api->version('v1', [
             // 删除回复
             $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')
                 ->name('api.topics.replies.destroy');
+
         });
     });
 
