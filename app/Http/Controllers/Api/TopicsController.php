@@ -54,7 +54,6 @@ class TopicsController extends Controller
                 $query->recentReplied();
                 break;
         }
-
         $topics = $query->paginate(20);
 
         return $this->response->paginator($topics, new TopicTransformer());
