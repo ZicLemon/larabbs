@@ -22,7 +22,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'bindings'],
+    'middleware' => ['serializer:array', 'bindings', 'change-locale'],
 ], function ($api) {
 
     $api->group([
@@ -82,19 +82,19 @@ $api->version('v1', [
             ->name('api.topics.show');
 
         //获取回复列表
-        $api->get('topics/{topic}/replies','RepliesController@index')
+        $api->get('topics/{topic}/replies', 'RepliesController@index')
             ->name('api.topics.replies.index');
 
         //获取某用户回复列表
-        $api->get('users/{user}/replies','RepliesController@userIndex')
+        $api->get('users/{user}/replies', 'RepliesController@userIndex')
             ->name('api.users.replies.index');
 
         //资源推荐
-        $api->get('links','LinksController@index')
+        $api->get('links', 'LinksController@index')
             ->name('api.links.index');
 
         //活跃用户
-        $api->get('actived/users','UsersController@activedIndex')
+        $api->get('actived/users', 'UsersController@activedIndex')
             ->name('api.actived.users.index');
 
         //需要token验证的接口
@@ -132,19 +132,19 @@ $api->version('v1', [
                 ->name('api.topics.replies.destroy');
 
             //通知列表
-            $api->get('user/notifications','NotificationsController@index')
+            $api->get('user/notifications', 'NotificationsController@index')
                 ->name('api.user.notifications.index');
 
             //通知统计
-            $api->get('user/notifications/stats','NotificationsController@stats')
+            $api->get('user/notifications/stats', 'NotificationsController@stats')
                 ->name('api.user.notifications.stats');
 
             //标记通知消息已读
-            $api->patch('user/notifications/read','NotificationsController@read')
+            $api->patch('user/notifications/read', 'NotificationsController@read')
                 ->name('api.user.notifications.read');
 
             //用户权限
-            $api->get('user/permissions','PermissionsController@index')
+            $api->get('user/permissions', 'PermissionsController@index')
                 ->name('api.user.permissions.index');
 
         });
